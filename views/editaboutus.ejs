@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit About Us</title>
+    <style>
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 20px;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+h1 {
+  color: #d32f2f; /* Dark red */
+  text-align: center;
+}
+
+form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea,
+input[type="date"] {
+  width: calc(100% - 12px);
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+button[type="submit"] {
+  padding: 8px 15px;
+  background-color: #d32f2f; /* Dark red */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #b71c1c; /* Darker red on hover */
+}
+
+
+        </style>
+</head>
+<body>
+    <h1>Edit About Us</h1>
+    <form action="/aboutus/update/<%= aboutus.id %>" method="post">
+        <label for="image">Image:</label>
+        <input type="text" name="image" value="<%= aboutus.image %>" required />
+
+        <label for="title">Title:</label>
+        <input type="text" name="title" value="<%= aboutus.title %>" required />
+
+        <label for="description">Description:</label>
+        <textarea name="description" required><%= aboutus.description %></textarea>
+
+        <button type="submit">Update About Us</button>
+    </form>
+</body>
+</html>

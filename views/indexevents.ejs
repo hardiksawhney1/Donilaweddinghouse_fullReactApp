@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Node.js Admin Panel - Events List</title>
+    <style>
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 20px;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+h1 {
+  color: #d32f2f; /* Dark red */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 20px;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background-color: #0277bd; /* Deep blue */
+  color: #fff;
+  border-radius: 6px 6px 0 0;
+}
+
+td {
+  background-color: #fff;
+  border-top: none;
+}
+
+a {
+  text-decoration: none;
+  margin-left: 10px;
+  padding: 8px;
+  color: #fff;
+  background-color: #d32f2f; /* Dark red */
+  border-radius: 4px;
+}
+
+a:hover {
+  background-color: #b71c1c; /* Darker red on hover */
+}
+
+form {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #666;
+}
+
+input[type="text"],
+textarea,
+input[type="date"] {
+  padding: 8px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  padding: 10px 16px;
+  background-color: #d32f2f; /* Dark red */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #b71c1c; /* Darker red on hover */
+}
+      </style>
+  </head>
+  <body>
+    <h1>Events List</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Venue</th>
+          <th>Groom's Name</th>
+          <th>Bride's Name</th>
+          <th>Photo URL</th>
+          <th>Number of Guests</th>
+          <th>Cost</th>
+          <th>Description</th>
+          <th>Activity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach(event => { %>
+        <tr>
+          <td><%= event.id %></td>
+          <td><%= event.venue %></td>
+          <td><%= event.groom_name %></td>
+          <td><%= event.bride_name %></td>
+          <td><%= event.photo %></td>
+          <td><%= event.noguests %></td>
+          <td><%= event.cost %></td>
+          <td><%= event.description %></td>
+          <td>
+            <a href="/events/edit/<%= event.id %>">Edit</a>
+            <a href="/events/delete/<%= event.id %>">Delete</a>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+    <h2>Add Event</h2>
+    <form action="/events/add" method="post">
+      <label for="venue">Venue:</label>
+      <input type="text" name="venue" required />
+      <label for="groom_name">Groom's Name:</label>
+      <input type="text" name="groom_name" required />
+      <label for="bride_name">Bride's Name:</label>
+      <input type="text" name="bride_name" required />
+      <label for="photo">Photo URL:</label>
+      <input type="text" name="photo" required />
+      <label for="noguests">Number of Guests:</label>
+      <input type="number" name="noguests" required />
+      <label for="cost">Cost:</label>
+      <input type="number" name="cost" required />
+      <label for="description">Description:</label>
+      <textarea name="description" required></textarea>
+      <button type="submit">Add Event</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Blogs</title>
+    <style>
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 20px;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+h1 {
+  color: #d32f2f; /* Dark red */
+  text-align: center;
+}
+
+form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea,
+input[type="date"] {
+  width: calc(100% - 12px);
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+button[type="submit"] {
+  padding: 8px 15px;
+  background-color: #d32f2f; /* Dark red */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #b71c1c; /* Darker red on hover */
+}
+    </style>
+  </head>
+  <body>
+    <h1>Edit Gallery</h1>
+    <form action="/blogs/update/<%= blog.id %>" method="post">
+      <label style="display: none" for="username">Username:</label>
+      <input style="display: none" type="text" name="username" value="<%= blog.username %>" required />
+
+      <label for="background">Background:</label>
+      <input type="text" name="background" value="<%= blog.background %>" required />
+
+      <label for="groom_name">Groom Name:</label>
+      <input type="text" name="groom_name" value="<%= blog.groom_name %>" required />
+
+      <label for="bride_name">Bride Name:</label>
+      <input type="text" name="bride_name" value="<%= blog.bride_name %>" required />
+
+      <label for="blog">Blog:</label>
+      <textarea name="blog" required><%= blog.blog %></textarea>
+
+      <button type="submit">Update gallery</button>
+    </form>
+  </body>
+</html>
